@@ -3,8 +3,11 @@ import StatCard from "@/components/StatCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/sonner";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   // Mock data
   const stats = {
     totalRooms: 24,
@@ -85,7 +88,7 @@ export default function Dashboard() {
                 </div>
               ))}
             </div>
-            <Button variant="outline" className="mt-4 w-full">
+            <Button variant="outline" className="mt-4 w-full" onClick={() => navigate("/activities")}>
               Xem tất cả
             </Button>
           </CardContent>
@@ -114,7 +117,16 @@ export default function Dashboard() {
                   </div>
                   <div className="text-right">
                     <p className="text-sm font-semibold text-destructive">{payment.amount}đ</p>
-                    <Button variant="outline" size="sm" className="mt-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="mt-2"
+                      onClick={() =>
+                        toast(`Đã gửi nhắc nhở đến ${payment.tenant}`, {
+                          description: `Số tiền còn nợ: ${payment.amount}đ – Phòng ${payment.room}`,
+                        })
+                      }
+                    >
                       Nhắc nhở
                     </Button>
                   </div>

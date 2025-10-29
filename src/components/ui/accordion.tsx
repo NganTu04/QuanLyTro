@@ -4,8 +4,12 @@ import { ChevronDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
+// Accordion (theo shadcn) là wrapper quanh Radix Accordion
+// Cấu trúc gồm Root, Item, Trigger, Content và dùng Tailwind + util cn để gộp class
+
 const Accordion = AccordionPrimitive.Root;
 
+// AccordionItem: phần tử con trong Accordion, có đường viền dưới
 const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
@@ -14,6 +18,7 @@ const AccordionItem = React.forwardRef<
 ));
 AccordionItem.displayName = "AccordionItem";
 
+// AccordionTrigger: tiêu đề có thể bấm để mở/đóng nội dung
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
@@ -34,6 +39,7 @@ const AccordionTrigger = React.forwardRef<
 ));
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
+// AccordionContent: vùng nội dung hiển thị/ẩn kèm animation
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
